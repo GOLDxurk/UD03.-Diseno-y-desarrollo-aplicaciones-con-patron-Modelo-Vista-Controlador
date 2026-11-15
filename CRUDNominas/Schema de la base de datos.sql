@@ -1,0 +1,23 @@
+CREATE DATABASE IF NOT EXISTS empresa;
+
+USE empresa;
+
+CREATE TABLE IF NOT EXISTS empleados(
+	dni CHAR(9) PRIMARY KEY,
+	nombre VARCHAR(255) NOT NULL,
+	sexo CHAR(1) NOT NULL,
+	categoria INT,
+	anyos INT,
+	CONSTRAINT chk_sexo CHECK (sexo IN ('M', 'F'))
+);
+
+CREATE TABLE IF NOT EXISTS nominas(
+	ID INT PRIMARY KEY AUTO_INCREMENT,
+	SUELDO DECIMAL (10,2),
+	dni CHAR(9),
+	CONSTRAINT fk_DNIEmpleado
+	FOREIGN KEY (dni) REFERENCES empleados(dni)
+	ON DELETE CASCADE
+
+	
+);
